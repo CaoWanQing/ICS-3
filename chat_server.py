@@ -135,16 +135,20 @@ class Server:
 
             elif msg["action"] == "gamble":
                 from_name = self.logged_sock2name[from_sock]
-                self.gambles[from_name] = msg.get(from_name,[]).append(msg["target"])
-                sum_win += int(msg["target"][1])
+                self.gambles[from_name] = msg["target"]
+                #sum_win += int(msg["target"][1])
             elif msg["action"] == "get_result":
                 print("The result is out! ")
                 self.gamble_result = msg["target"]
+                print(self.gambles)
+                for j in self.gambles:
+                    sum_win += int(self.gambles[j][1])
+                print (sum_win)
                 for i in self.gambles:
                     if self.gambles[i][0] == self.gamble_result:
-                        mysend(self.logged_name2sock(i), json.dumps({"action": "gamble", "status": "success", "money": sum_win}))
+                        mysend(self.logged_name2sock[i], json.dumps({"action": "gamble", "status": "success", "money": sum_win}))
                     else:
-                        mysend(self.logged_name2sock(i), json.dumps({"action": "gamble", "status": "fail", "money": sum_win}))
+                        mysend(self.logged_name2sock[i], json.dumps({"action": "gamble", "status": "fail", "money": sum_win}))
 
 
 #==============================================================================
@@ -259,3 +263,4 @@ def main():
     server.run()
 
 main()
+
