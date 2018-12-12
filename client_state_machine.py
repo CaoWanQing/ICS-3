@@ -277,7 +277,8 @@ class ClientSM:
                     self.out_msg += self.peer + "'s score is " + peer_score + "\n"                
                     if int(peer_score) > 21:
                         self.out_msg += "The other player is busted. You win!\n"
-
+                        who_wins = self.me
+                        mysend(self.s, json.dumps({"action": "get_result", "target": who_wins}))
                         self.out_msg += menu
                         self.state = S_LOGGEDIN
                     elif self.player.active == True:
@@ -304,7 +305,7 @@ class ClientSM:
             if len(peer_msg) > 0:
                 peer_msg = json.loads(peer_msg)
                 if peer_msg["action"] == "gamble":
-                    self.out_msg += "(" + peer_msg["success"] + peer_msg["money"] + ")\n"
+                    self.out_msg += "(" + peer_msg["status"] + peer_msg["money"] + ")\n"
 
 #==============================================================================
 # invalid state
@@ -314,3 +315,4 @@ class ClientSM:
             print_state(self.state)
 
         return self.out_msg
+
