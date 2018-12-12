@@ -17,7 +17,7 @@ menu = "\n++++ Choose one of the following commands\n \
         p _#_: to get number <#> sonnet\n \
         q: to leave the chat system\n \
         b _peer_: to play BlackJack with the _peer_ \n \
-        g _peer_ _money_: to gamble on the BlackJack game\n\n" '''NNN'''
+        g _peer_ _money_: to gamble on the BlackJack game\n\n"
 
 S_OFFLINE   = 0
 S_CONNECTED = 1
