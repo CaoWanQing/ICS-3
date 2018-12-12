@@ -305,7 +305,7 @@ class ClientSM:
             if len(peer_msg) > 0:
                 peer_msg = json.loads(peer_msg)
                 if peer_msg["action"] == "gamble":
-                    self.out_msg += "You " + peer_msg["status"] + "! You now have " + str(peer_msg["money"]) + "kuai \n"
+                    self.out_msg += "You " + peer_msg["status"] + "! You now have " + str(peer_msg["money"]) + " kuai \n"
 
 #==============================================================================
 # invalid state
