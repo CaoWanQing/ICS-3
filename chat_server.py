@@ -143,12 +143,12 @@ class Server:
                 print(self.gambles)
                 for j in self.gambles:
                     sum_win += int(self.gambles[j][1])
-                print (sum_win)
+                print ("total money in the pool " + sum_win)
                 for i in self.gambles:
                     if self.gambles[i][0] == self.gamble_result:
-                        mysend(self.logged_name2sock[i], json.dumps({"action": "gamble", "status": "success", "money": sum_win}))
+                        mysend(self.logged_name2sock[i], json.dumps({"action": "gamble", "status": "win", "money": sum_win}))
                     else:
-                        mysend(self.logged_name2sock[i], json.dumps({"action": "gamble", "status": "fail", "money": sum_win}))
+                        mysend(self.logged_name2sock[i], json.dumps({"action": "gamble", "status": "fail", "money": 0}))
 
 
 #==============================================================================
@@ -263,4 +263,3 @@ def main():
     server.run()
 
 main()
-
